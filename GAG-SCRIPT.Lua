@@ -93,7 +93,7 @@ blueBtn.Text = "Rejoin Game"
 Instance.new("UICorner", blueBtn).CornerRadius = UDim.new(0, 8)
 
 -- ⏱️ Timer Countdown
-local countdown = 20
+local countdown = 10
 task.spawn(function()
     while countdown > 0 do
         grayBtn.Text = string.format("Click to Open Script (%.1fs)", countdown)
